@@ -1,0 +1,160 @@
+CREATE TABLE Patient (
+    id NUMBER PRIMARY KEY,
+    Name VARCHAR(50),
+    Date_Of_Birth VARCHAR(20),
+    Phone NUMBER  ,
+    Email VARCHAR(50)
+);
+
+
+CREATE TABLE Doctor (
+    id NUMBER PRIMARY KEY,
+    Name VARCHAR(50),
+    Specialty VARCHAR(50),
+    Phone NUMBER
+);
+
+
+CREATE TABLE Treats (
+    PatientID NUMBER,
+    DoctorID NUMBER,
+    Diagnose VARCHAR(50),
+    Treatments NUMBER
+);
+
+
+CREATE TABLE Tests (
+    id NUMBER PRIMARY KEY,
+    Type VARCHAR(50),
+    Category VARCHAR(50)
+);
+
+
+CREATE TABLE Log (
+    PatientID NUMBER,
+    TestID NUMBER,
+    TestDate VARCHAR(20)
+);
+
+ALTER TABLE Treats
+ADD CONSTRAINT FK_Patient FOREIGN KEY (PatientID)
+REFERENCES Patient(id);
+
+-- Add foreign key relationship between Treats and Doctor
+ALTER TABLE Treats
+ADD CONSTRAINT FK_Doctor FOREIGN KEY (DoctorID)
+REFERENCES Doctor(id);
+
+-- Add foreign key relationship between Log and Patient
+ALTER TABLE Log
+ADD CONSTRAINT FK_Log_Patient FOREIGN KEY (PatientID)
+REFERENCES Patient(id);
+
+-- Add foreign key relationship between Log and Tests
+ALTER TABLE Log
+ADD CONSTRAINT FK_Log_Test FOREIGN KEY (TestID)
+REFERENCES Tests(id);
+
+
+INSERT INTO Patient (id, Name, Date_Of_Birth, Phone, Email)
+   VALUES (1, 'Rahim', '1980-09-25', 01723874356, '123rahim@gmail.com');
+
+
+
+
+
+INSERT INTO Patient (id, Name, Date_Of_Birth, Phone, Email)
+   VALUES (2, 'Karim', '1970-11-30', 01443874356, '567karim@gmail.com');
+
+
+SQL> INSERT INTO Patient (id, Name, Date_Of_Birth, Phone, Email)
+ VALUES (3, 'Maisha', '1986-05-12', 01343872136, 'maisha888@gmail.com');
+
+
+
+SQL>
+SQL> INSERT INTO Patient (id, Name, Date_Of_Birth, Phone, Email)
+  VALUES (4, 'Badhon', '1990-04-14', 01923874659, 'badhon004@gmail.com');
+
+
+
+SQL> INSERT INTO Patient (id, Name, Date_Of_Birth, Phone, Email)
+ VALUES (5, 'Rimon', '1994-02-25', 01524774343, 'rrr@gmail.com');
+
+
+
+
+INSERT INTO Doctor (id, Name, Specialty, Phone)
+VALUES (1, 'Dr. Mahbub', 'CARDIOLOGY', 01370596806);
+
+
+
+INSERT INTO Doctor (id, Name, Specialty, Phone)
+VALUES (2, 'Dr. Quazi', 'Orthopedic', 01711133966);
+
+
+
+INSERT INTO Doctor (id, Name, Specialty, Phone)
+VALUES (3, 'Dr. AKM Musa', 'Endocrinologists', 01439059123);
+
+
+INSERT INTO Doctor (id, Name, Specialty, Phone)
+VALUES (4, 'Dr. Sheikh', 'Gastroenterologist', 01380588081);
+
+INSERT INTO Doctor (id, Name, Specialty, Phone)
+VALUES (5, 'Dr. Ferdous', 'Neuromedicine', 01169796383);
+
+
+
+
+INSERT INTO Tests (id, Type, Category)
+VALUES (1, 'Blood Test', 'Medical');
+
+INSERT INTO Tests (id, Type, Category)
+VALUES (2, 'X-Ray', 'Radiology');
+
+INSERT INTO Tests (id, Type, Category)
+VALUES (3, 'MRI', 'Radiology');
+
+INSERT INTO Tests (id, Type, Category)
+VALUES (4, 'Ultrasound', 'Radiology');
+
+
+INSERT INTO Tests (id, Type, Category)
+VALUES (5, 'CT Scan', 'Radiology');
+
+
+
+
+INSERT INTO Treats (PatientID, DoctorID, Diagnose, Treatments)
+VALUES (1, 1, 'Hypertension', 2);
+
+INSERT INTO Treats (PatientID, DoctorID, Diagnose, Treatments)
+VALUES (2, 2, 'Fracture', 3);
+
+INSERT INTO Treats (PatientID, DoctorID, Diagnose, Treatments)
+VALUES (3, 1, 'Migraine', 1);
+
+INSERT INTO Treats (PatientID, DoctorID, Diagnose, Treatments)
+VALUES (4, 3, 'Diabetes', 2);
+
+INSERT INTO Treats (PatientID, DoctorID, Diagnose, Treatments)
+VALUES (5, 4, 'Gastric', 1);
+
+
+
+
+INSERT INTO Log (PatientID, TestID, TestDate)
+VALUES (1, 1, '2023-11-04');
+
+INSERT INTO Log (PatientID, TestID, TestDate)
+VALUES (2, 2, '2023-11-04');
+
+INSERT INTO Log (PatientID, TestID, TestDate)
+VALUES (3, 1, '2023-11-05');
+
+INSERT INTO Log (PatientID, TestID, TestDate)
+VALUES (4, 3, '2023-11-06');
+
+INSERT INTO Log (PatientID, TestID, TestDate)
+VALUES (5, 4, '2023-11-07');
